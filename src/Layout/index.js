@@ -5,27 +5,27 @@ import Header from "./Header";
 import NotFound from "./NotFound";
 import DeckList from "./DeckList";
 import CreateDeck from "./CreateDeck";
+import DeckView from "./DeckView";
+import EditDeck from "./EditDeck";
+
 import { listDecks } from "../utils/api/index";
 
-// BrowserRouter is already wrapping <App />
+async function loadDecks() {
+  const abortController = new AbortController();
+  const retrievedDecks = await listDecks(abortController.signal);
+  return retrievedDecks;
+}
 
-function Layout() {
+export default function Layout() {
   const [decks, setDecks] = useState([]);
-  const [currentDeck, setCurrentDeck] = useState({});
+  const [deckChange, setDeckChange] = useState(new Date());
 
-  // An API hook for the list of decks
   useEffect(() => {
-    const abortController = new AbortController();
-
-    async function getDecks() {
-      const retrievedDecks = await listDecks(abortController.signal);
-      setDecks(retrievedDecks);
-    }
-
-    getDecks();
+    loadDecks()
+      .then(setDecks)
+      .then(() => setDeckChange(new Date()));
 
     return () => {
-      console.log("cleanup", decks);
       setDecks([]);
     };
   }, []);
@@ -36,10 +36,16 @@ function Layout() {
       <div className="container">
         <Switch>
           <Route exact path="/">
-            <DeckList decks={decks} />
+            <DeckList decks={decks} setDeckChange={setDeckChange} />
           </Route>
           <Route path="/decks/new">
-            <CreateDeck />
+            <CreateDeck decks={decks} setDeckChange={setDeckChange} />
+          </Route>
+          <Route path="/decks/:deckId/edit">
+            <EditDeck setDeckChange={setDeckChange} />
+          </Route>
+          <Route path="/decks/:deckId">
+            <DeckView setDeckChange={setDeckChange} />
           </Route>
           <Route>
             <NotFound />
@@ -49,5 +55,3 @@ function Layout() {
     </>
   );
 }
-
-export default Layout;

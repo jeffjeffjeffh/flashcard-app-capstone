@@ -1,53 +1,44 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useHistory, useRouteMatch, useParams } from "react-router-dom";
 
-import { createDeck } from "../utils/api/index";
 import NavBar from "./NavBar";
 
-// This function aspires to figure out the first ID available in the API and return it.
-const getNewId = (decks) => {
-  // Map the decks to an array of their IDs.
-  const ids = decks.map((deck) => deck.id);
+import { readDeck, updateDeck } from "../utils/api/index";
 
-  // Find the highest ID in the array
-  let highest = -Infinity;
-  ids.forEach((id) => {
-    if (id > highest) {
-      highest = id;
-    }
-  });
-
-  // Use an ID equal to the highest + 1
-  const availableId = highest + 1;
-  return availableId;
-};
-
-export default function CreateDeck({ decks, setDeckChange }) {
+export default function EditDeck({ setDeckChange }) {
   const history = useHistory();
+  const { url } = useRouteMatch();
+  const { deckId } = useParams();
 
-  const initialFormData = {
-    name: "",
-    description: "",
-  };
-  const [formData, setFormData] = useState(initialFormData);
+  const [formData, setFormData] = useState({});
+
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    async function loadDeck() {
+      const deck = await readDeck(deckId, abortController.signal);
+      setFormData({
+        name: deck.name,
+        description: deck.description,
+      });
+    }
+
+    loadDeck();
+  }, []);
 
   // Use the provided API util to update the list of decks with the new deck
-  // TODO: Make it so that the navigation occurs after a successful POST operation,
-  //       Possibly disable navigation/submission buttons until redirect?
   const submitHandler = async (event) => {
     event.preventDefault();
-    const newId = getNewId(decks);
     const deckData = {
       ...formData,
-      id: newId,
+      id: deckId,
     };
-    console.log(deckData);
 
     const abortController = new AbortController();
-    await createDeck(deckData, abortController.signal);
+    await updateDeck(deckData, abortController.signal);
 
     setDeckChange(new Date());
-    history.push("/");
+    history.push(`decks/${deckId}`);
   };
 
   const changeHandler = ({ target }) => {

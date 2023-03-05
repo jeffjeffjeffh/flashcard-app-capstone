@@ -1,8 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+
 import DeckPreview from "./DeckPreview";
 
-export default function DeckList({ decks }) {
+export default function DeckList({ decks, setDeckChange }) {
   const history = useHistory();
 
   if (decks.length === 0) {
@@ -10,7 +11,9 @@ export default function DeckList({ decks }) {
   }
 
   const list = decks.map((deck, index) => {
-    return <DeckPreview deck={deck} key={index} />;
+    return (
+      <DeckPreview deck={deck} key={index} setDeckChange={setDeckChange} />
+    );
   });
 
   const HandleAddDeck = () => {
