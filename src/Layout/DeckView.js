@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, useRouteMatch } from "react-router-dom";
-
 import NavBar from "./NavBar";
 import Card from "./Card";
-import { readDeck } from "../utils/api/index";
+import { readDeck, deleteDeck } from "../utils/api/index";
 
 export default function DeckView({ setDeckChange }) {
   const [currentDeck, setCurrentDeck] = useState({});
@@ -30,6 +29,23 @@ export default function DeckView({ setDeckChange }) {
     history.push(`${url}/edit`);
   };
 
+  const deleteDeckHandler = async (event) => {
+    const confirm = window.confirm(
+      "Delete this deck?\n\nYou will not be able to recover it."
+    );
+
+    if (confirm) {
+      const abortController = new AbortController();
+      await deleteDeck(currentDeck.id, abortController.signal);
+      setDeckChange(new Date());
+      history.push("/");
+    }
+  };
+
+  const studyHandler = (event) => {
+    history.push(`/decks/${currentDeck.id}/study`);
+  };
+
   if (currentDeck.id) {
     return (
       <div>
@@ -38,9 +54,9 @@ export default function DeckView({ setDeckChange }) {
           <h1>{currentDeck.name}</h1>
           <p>{currentDeck.description}</p>
           <button onClick={editHandler}>Edit</button>
-          <button>Study</button>
+          <button onClick={studyHandler}>Study</button>
           <button>+ Add Cards</button>
-          <button>Delete</button>
+          <button onClick={deleteDeckHandler}>Delete</button>
         </div>
         <div>
           <ul>

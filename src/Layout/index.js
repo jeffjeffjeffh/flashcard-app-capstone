@@ -7,7 +7,8 @@ import DeckList from "./DeckList";
 import CreateDeck from "./CreateDeck";
 import DeckView from "./DeckView";
 import EditDeck from "./EditDeck";
-
+import StudyDeck from "./StudyDeck";
+import EditCard from "./EditCard";
 import { listDecks } from "../utils/api/index";
 
 async function loadDecks() {
@@ -21,14 +22,12 @@ export default function Layout() {
   const [deckChange, setDeckChange] = useState(new Date());
 
   useEffect(() => {
-    loadDecks()
-      .then(setDecks)
-      .then(() => setDeckChange(new Date()));
+    loadDecks().then(setDecks);
 
     return () => {
       setDecks([]);
     };
-  }, []);
+  }, [deckChange]);
 
   return (
     <>
@@ -43,6 +42,12 @@ export default function Layout() {
           </Route>
           <Route path="/decks/:deckId/edit">
             <EditDeck setDeckChange={setDeckChange} />
+          </Route>
+          <Route path="/decks/:deckId/study">
+            <StudyDeck />
+          </Route>
+          <Route path="/decks/:deckId/cards/:cardId/edit">
+            <EditCard />
           </Route>
           <Route path="/decks/:deckId">
             <DeckView setDeckChange={setDeckChange} />

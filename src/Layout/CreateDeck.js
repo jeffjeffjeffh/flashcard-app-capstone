@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { createDeck } from "../utils/api/index";
 import NavBar from "./NavBar";
 
-// This function aspires to figure out the first ID available in the API and return it.
+// This function find the first ID available in the API and returns it.
 const getNewId = (decks) => {
   // Map the decks to an array of their IDs.
   const ids = decks.map((deck) => deck.id);
@@ -24,24 +24,20 @@ const getNewId = (decks) => {
 
 export default function CreateDeck({ decks, setDeckChange }) {
   const history = useHistory();
-
   const initialFormData = {
     name: "",
     description: "",
   };
   const [formData, setFormData] = useState(initialFormData);
 
-  // Use the provided API util to update the list of decks with the new deck
-  // TODO: Make it so that the navigation occurs after a successful POST operation,
-  //       Possibly disable navigation/submission buttons until redirect?
   const submitHandler = async (event) => {
     event.preventDefault();
+
     const newId = getNewId(decks);
     const deckData = {
       ...formData,
       id: newId,
     };
-    console.log(deckData);
 
     const abortController = new AbortController();
     await createDeck(deckData, abortController.signal);
@@ -52,6 +48,11 @@ export default function CreateDeck({ decks, setDeckChange }) {
 
   const changeHandler = ({ target }) => {
     setFormData({ ...formData, [target.name]: target.value });
+  };
+
+  const cancelHandler = (event) => {
+    event.preventDefault();
+    history.push("/");
   };
 
   return (
@@ -80,7 +81,7 @@ export default function CreateDeck({ decks, setDeckChange }) {
               value={formData.description}
             ></textarea>
           </label>
-          <button>Cancel</button>
+          <button onClick={cancelHandler}>Cancel</button>
           <button type="submit">Submit</button>
         </form>
       </div>
