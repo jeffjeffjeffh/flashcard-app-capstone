@@ -46,6 +46,10 @@ export default function DeckView({ setDeckChange }) {
     history.push(`/decks/${currentDeck.id}/study`);
   };
 
+  const addCardHandler = (event) => {
+    history.push(`/decks/${currentDeck.id}/cards/new`)
+  }
+
   if (currentDeck.id) {
     return (
       <div>
@@ -55,7 +59,7 @@ export default function DeckView({ setDeckChange }) {
           <p>{currentDeck.description}</p>
           <button onClick={editHandler}>Edit</button>
           <button onClick={studyHandler}>Study</button>
-          <button>+ Add Cards</button>
+          <button onClick={addCardHandler}>+ Add Cards</button>
           <button onClick={deleteDeckHandler}>Delete</button>
         </div>
         <div>

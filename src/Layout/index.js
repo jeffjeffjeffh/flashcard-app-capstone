@@ -9,6 +9,7 @@ import DeckView from "./DeckView";
 import EditDeck from "./EditDeck";
 import StudyDeck from "./StudyDeck";
 import EditCard from "./EditCard";
+import CreateCard from "./CreateCard";
 import { listDecks } from "../utils/api/index";
 
 async function loadDecks() {
@@ -46,8 +47,11 @@ export default function Layout() {
           <Route path="/decks/:deckId/study">
             <StudyDeck />
           </Route>
+          <Route path="/decks/:deckId/cards/new">
+            <CreateCard setDeckChange={setDeckChange} />
+          </Route>
           <Route path="/decks/:deckId/cards/:cardId/edit">
-            <EditCard />
+            <EditCard setDeckChange={setDeckChange} />
           </Route>
           <Route path="/decks/:deckId">
             <DeckView setDeckChange={setDeckChange} />

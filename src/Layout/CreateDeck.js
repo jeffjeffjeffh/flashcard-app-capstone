@@ -4,24 +4,6 @@ import { useHistory } from "react-router-dom";
 import { createDeck } from "../utils/api/index";
 import NavBar from "./NavBar";
 
-// This function find the first ID available in the API and returns it.
-const getNewId = (decks) => {
-  // Map the decks to an array of their IDs.
-  const ids = decks.map((deck) => deck.id);
-
-  // Find the highest ID in the array
-  let highest = -Infinity;
-  ids.forEach((id) => {
-    if (id > highest) {
-      highest = id;
-    }
-  });
-
-  // Use an ID equal to the highest + 1
-  const availableId = highest + 1;
-  return availableId;
-};
-
 export default function CreateDeck({ decks, setDeckChange }) {
   const history = useHistory();
   const initialFormData = {
@@ -33,10 +15,8 @@ export default function CreateDeck({ decks, setDeckChange }) {
   const submitHandler = async (event) => {
     event.preventDefault();
 
-    const newId = getNewId(decks);
     const deckData = {
       ...formData,
-      id: newId,
     };
 
     const abortController = new AbortController();
