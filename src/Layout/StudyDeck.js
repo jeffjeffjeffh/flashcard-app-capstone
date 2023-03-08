@@ -9,6 +9,8 @@ const loadDeck = async (deckId) => {
   return deck;
 };
 
+// TODO: ADD DECK TITLE TO SCREEN EVEN IF NOT ENOUGH CARDS
+
 export default function StudyDeck() {
   const { deckId } = useParams();
   const [currentDeck, setCurrentDeck] = useState({});
@@ -26,6 +28,15 @@ export default function StudyDeck() {
     if (currentDeck.cards.length <= 2) {
       return (
         <div>
+          <div className="navBar">
+            <p>
+              <Link to="/">Home</Link> /{" "}
+              <Link to={`/decks/${deckId}`}>{currentDeck.name}</Link> / Study
+            </p>
+          </div>
+
+          <h1>Study: {currentDeck.name}</h1>
+          <h2>Not enough cards.</h2>
           <p>
             You need at least 3 cards to study. There are{" "}
             {currentDeck.cards.length} cards in this deck.

@@ -58,6 +58,8 @@ export default function CreateCard({ setDeckChange }) {
     return <p>Loading...</p>;
   }
 
+  // TODO -
+
   return (
     <div>
       <div className="navBar">
@@ -67,7 +69,8 @@ export default function CreateCard({ setDeckChange }) {
           Card
         </p>
       </div>
-      <h1>{currentDeck.name}: Add Card</h1>
+      <h1>{currentDeck.name}</h1>
+      <h2>Add Card</h2>
       <div>
         <form onSubmit={submitHandler}>
           <label htmlFor="front">
