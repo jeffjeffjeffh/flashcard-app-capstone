@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useRouteMatch, useParams } from "react-router-dom";
-
-import NavBar from "./NavBar";
-
+import { Link, useHistory, useRouteMatch, useParams } from "react-router-dom";
 import { readDeck, updateDeck } from "../utils/api/index";
 
 export default function EditDeck({ setDeckChange }) {
@@ -11,12 +8,14 @@ export default function EditDeck({ setDeckChange }) {
   const { deckId } = useParams();
 
   const [formData, setFormData] = useState({});
+  const [deck, setDeck] = useState({});
 
   useEffect(() => {
     const abortController = new AbortController();
 
     async function loadDeck() {
       const deck = await readDeck(deckId, abortController.signal);
+      setDeck(deck);
       setFormData({
         name: deck.name,
         description: deck.description,
@@ -31,7 +30,6 @@ export default function EditDeck({ setDeckChange }) {
     event.preventDefault();
     const deckData = {
       ...formData,
-      id: deckId,
     };
 
     const abortController = new AbortController();
@@ -45,9 +43,20 @@ export default function EditDeck({ setDeckChange }) {
     setFormData({ ...formData, [target.name]: target.value });
   };
 
+  const cancelHandler = (event) => {
+    event.preventDefault();
+    history.push(`decks/${deckId}`);
+  };
+
   return (
     <div>
-      <NavBar />
+      <div className="navBar">
+        <p>
+          <Link to="/">Home</Link> /{" "}
+          <Link to={`decks/${deck.id}`}>{deck.name}</Link> / Edit
+        </p>
+      </div>
+      <h1>Edit Deck</h1>
       <div>
         <form onSubmit={submitHandler}>
           <label htmlFor="name">
@@ -71,7 +80,7 @@ export default function EditDeck({ setDeckChange }) {
               value={formData.description}
             ></textarea>
           </label>
-          <button>Cancel</button>
+          <button onClick={cancelHandler}>Cancel</button>
           <button type="submit">Submit</button>
         </form>
       </div>

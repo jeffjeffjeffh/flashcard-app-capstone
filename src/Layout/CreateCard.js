@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import { createCard, readDeck } from "../utils/api/index";
-import NavBar from "./NavBar";
 
 export default function CreateCard({ setDeckChange }) {
   // SETUP
@@ -61,8 +60,14 @@ export default function CreateCard({ setDeckChange }) {
 
   return (
     <div>
-      <NavBar />
-      <h1>React Router: Add Card</h1>
+      <div className="navBar">
+        <p>
+          <Link to="/">Home</Link> /{" "}
+          <Link to={`decks/${currentDeck.id}`}>{currentDeck.name}</Link> / Add
+          Card
+        </p>
+      </div>
+      <h1>{currentDeck.name}: Add Card</h1>
       <div>
         <form onSubmit={submitHandler}>
           <label htmlFor="front">
@@ -85,8 +90,8 @@ export default function CreateCard({ setDeckChange }) {
               value={formData.back}
             ></textarea>
           </label>
-          <button onClick={cancelHandler}>Cancel</button>
-          <button type="submit">Submit</button>
+          <button onClick={cancelHandler}>Done</button>
+          <button type="submit">Save</button>
         </form>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory, useRouteMatch } from "react-router-dom";
-import NavBar from "./NavBar";
+import { Link, useParams, useHistory, useRouteMatch } from "react-router-dom";
 import Card from "./Card";
 import { readDeck, deleteDeck } from "../utils/api/index";
 
@@ -47,13 +46,17 @@ export default function DeckView({ setDeckChange }) {
   };
 
   const addCardHandler = (event) => {
-    history.push(`/decks/${currentDeck.id}/cards/new`)
-  }
+    history.push(`/decks/${currentDeck.id}/cards/new`);
+  };
 
   if (currentDeck.id) {
     return (
       <div>
-        <NavBar />
+        <div className="navBar">
+          <p>
+            <Link to="/">Home</Link> / {currentDeck.name}
+          </p>
+        </div>
         <div>
           <h1>{currentDeck.name}</h1>
           <p>{currentDeck.description}</p>
@@ -62,6 +65,7 @@ export default function DeckView({ setDeckChange }) {
           <button onClick={addCardHandler}>+ Add Cards</button>
           <button onClick={deleteDeckHandler}>Delete</button>
         </div>
+        <h1>Cards</h1>
         <div>
           <ul>
             {currentDeck.cards.map((card, index) => {

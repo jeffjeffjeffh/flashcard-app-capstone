@@ -1,6 +1,5 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-
 import DeckPreview from "./DeckPreview";
 
 export default function DeckList({ decks, setDeckChange }) {

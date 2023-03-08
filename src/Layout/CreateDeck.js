@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-
+import { Link, useHistory } from "react-router-dom";
 import { createDeck } from "../utils/api/index";
-import NavBar from "./NavBar";
 
 export default function CreateDeck({ decks, setDeckChange }) {
   const history = useHistory();
@@ -37,7 +35,12 @@ export default function CreateDeck({ decks, setDeckChange }) {
 
   return (
     <div>
-      <NavBar />
+      <div className="navBar">
+        <p>
+          <Link to="/">Home</Link> / Create Deck
+        </p>
+      </div>
+      <h1>Create Deck</h1>
       <div>
         <form onSubmit={submitHandler}>
           <label htmlFor="name">

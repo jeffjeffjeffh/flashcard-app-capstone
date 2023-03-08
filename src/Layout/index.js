@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Header from "./Header";
 import NotFound from "./NotFound";
 import DeckList from "./DeckList";
@@ -11,6 +10,7 @@ import StudyDeck from "./StudyDeck";
 import EditCard from "./EditCard";
 import CreateCard from "./CreateCard";
 import { listDecks } from "../utils/api/index";
+import index from "./index.css";
 
 async function loadDecks() {
   const abortController = new AbortController();
