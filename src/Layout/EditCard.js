@@ -73,35 +73,46 @@ export default function EditCard({ setDeckChange }) {
   return (
     <div>
       <div className="navBar">
+        <i className="material-icons">home</i>
         <p>
           <Link to="/">Home</Link> /{" "}
           <Link to={`decks/${deck.id}`}>{deck.name}</Link> / Edit Card {card.id}
         </p>
       </div>
       <h1>Edit Card</h1>
+      <hr></hr>
       <div>
         <form onSubmit={submitHandler}>
-          <label htmlFor="front">
-            Name
-            <textarea
-              id="front"
-              name="front"
-              placeholder="Front text"
-              onChange={changeHandler}
-              value={formData.front}
-            ></textarea>
-          </label>
-          <label htmlFor="back">
-            <textarea
-              id="back"
-              name="back"
-              placeholder="Back text"
-              onChange={changeHandler}
-              value={formData.back}
-            ></textarea>
-          </label>
-          <button onClick={cancelHandler}>Cancel</button>
-          <button type="submit">Submit</button>
+          <div className="fields">
+            <label htmlFor="front">
+              <h5>Front</h5>
+              <textarea
+                id="front"
+                name="front"
+                placeholder="Front text"
+                onChange={changeHandler}
+                value={formData.front}
+              ></textarea>
+            </label>
+            <h5>Back</h5>
+            <label htmlFor="back">
+              <textarea
+                id="back"
+                name="back"
+                placeholder="Back text"
+                onChange={changeHandler}
+                value={formData.back}
+              ></textarea>
+            </label>
+          </div>
+          <div className="buttons">
+            <button onClick={cancelHandler}>
+              <p>Cancel</p>
+            </button>
+            <button className="submit" type="submit">
+              <p>Submit</p>
+            </button>
+          </div>
         </form>
       </div>
     </div>

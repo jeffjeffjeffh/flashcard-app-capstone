@@ -25,10 +25,17 @@ export default function Card({ card, setDeckChange }) {
 
   return (
     <li>
+      <h5>Front:</h5>
       <p>{card.front}</p>
+      <h5>Back:</h5>
       <p>{card.back}</p>
-      <button onClick={editHandler}>Edit</button>
-      <button onClick={deleteHandler}>Delete</button>
+      <button onClick={editHandler}>
+        <p>Edit</p>
+      </button>
+      <button className="delete" onClick={deleteHandler}>
+        <p>Delete</p>
+      </button>
+      <hr></hr>
     </li>
   );
 }

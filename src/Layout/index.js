@@ -10,7 +10,7 @@ import StudyDeck from "./StudyDeck";
 import EditCard from "./EditCard";
 import CreateCard from "./CreateCard";
 import { listDecks } from "../utils/api/index";
-import index from "./index.css";
+import "./index.css";
 
 async function loadDecks() {
   const abortController = new AbortController();

@@ -36,36 +36,46 @@ export default function CreateDeck({ decks, setDeckChange }) {
   return (
     <div>
       <div className="navBar">
+        <i className="material-icons">home</i>
         <p>
           <Link to="/">Home</Link> / Create Deck
         </p>
       </div>
       <h1>Create Deck</h1>
+      <hr></hr>
       <div>
         <form onSubmit={submitHandler}>
-          <label htmlFor="name">
-            Name
-            <input
-              type="text"
-              id="name"
-              name="name"
-              placeholder="Deck Name"
-              onChange={changeHandler}
-              value={formData.name}
-            ></input>
-          </label>
-          <label htmlFor="description">
-            Description
-            <textarea
-              id="description"
-              name="description"
-              placeholder="Brief description of the deck"
-              onChange={changeHandler}
-              value={formData.description}
-            ></textarea>
-          </label>
-          <button onClick={cancelHandler}>Cancel</button>
-          <button type="submit">Submit</button>
+          <div className="fields">
+            <label htmlFor="name">
+              <h5>Name</h5>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Deck Name"
+                onChange={changeHandler}
+                value={formData.name}
+              ></input>
+            </label>
+            <label htmlFor="description">
+              <h5>Description</h5>
+              <textarea
+                id="description"
+                name="description"
+                placeholder="Brief description of the deck"
+                onChange={changeHandler}
+                value={formData.description}
+              ></textarea>
+            </label>
+          </div>
+          <div className="buttons">
+            <button onClick={cancelHandler}>
+              <p>Cancel</p>
+            </button>
+            <button type="submit">
+              <p>Submit</p>
+            </button>
+          </div>
         </form>
       </div>
     </div>

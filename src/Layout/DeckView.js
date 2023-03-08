@@ -53,19 +53,33 @@ export default function DeckView({ setDeckChange }) {
     return (
       <div>
         <div className="navBar">
+          <i className="material-icons">home</i>
           <p>
-            <Link to="/">Home</Link> / {currentDeck.name}
+            <Link className="navLink" to="/">
+              Home
+            </Link>{" "}
+            / {currentDeck.name}
           </p>
         </div>
         <div>
           <h1>{currentDeck.name}</h1>
+          <hr></hr>
           <p>{currentDeck.description}</p>
-          <button onClick={editHandler}>Edit</button>
-          <button onClick={studyHandler}>Study</button>
-          <button onClick={addCardHandler}>+ Add Cards</button>
-          <button onClick={deleteDeckHandler}>Delete</button>
+          <button onClick={editHandler}>
+            <p>Edit</p>
+          </button>
+          <button onClick={studyHandler}>
+            <p>Study</p>
+          </button>
+          <button onClick={addCardHandler}>
+            <p>+ Add Cards</p>
+          </button>
+          <button className="delete" onClick={deleteDeckHandler}>
+            <p>Delete</p>
+          </button>
         </div>
-        <h1>Cards</h1>
+        <hr></hr>
+        <h1 style={{ paddingBottom: "1rem" }}>Cards</h1>
         <div>
           <ul>
             {currentDeck.cards.map((card, index) => {

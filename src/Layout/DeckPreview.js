@@ -28,11 +28,18 @@ export default function DeckPreview({ deck, setDeckChange }) {
   return (
     <li>
       <h1>{deck.name}</h1>
-      <p>{deck.cards.length} cards</p>
+      <p class="cardCount">{deck.cards.length} cards</p>
       <p>{deck.description}</p>
-      <button onClick={viewHandler}>View</button>
-      <button onClick={studyHandler}>Study</button>
-      <button onClick={deleteHandler}>Delete</button>
+      <button onClick={viewHandler}>
+        <p>View</p>
+      </button>
+      <button onClick={studyHandler}>
+        <p>Study</p>
+      </button>
+      <button className="delete" onClick={deleteHandler}>
+        <p>Delete</p>
+      </button>
+      <hr></hr>
     </li>
   );
 }

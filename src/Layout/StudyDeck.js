@@ -41,13 +41,14 @@ export default function StudyDeck() {
             You need at least 3 cards to study. There are{" "}
             {currentDeck.cards.length} cards in this deck.
           </p>
-          <button onClick={addCardHandler}>+ Add Cards</button>
+          <button onClick={addCardHandler}><p>+ Add Cards</p></button>
         </div>
       );
     } else {
       return (
         <div>
           <div className="navBar">
+            <i className="material-icons">home</i>
             <p>
               <Link to="/">Home</Link> /{" "}
               <Link to={`/decks/${deckId}`}>{currentDeck.name}</Link> / Study

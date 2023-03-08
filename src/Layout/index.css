@@ -1,3 +1,97 @@
+body {
+  background-color: #e7ecef;
+}
+
+h1 {
+  padding: 2px;
+}
+
+/* LISTS */
+ul {
+  list-style: none;
+}
+
+li {
+  border-right: 1px solid #a3cef1;
+  border-left: 1px solid #a3cef1;
+  padding: 0 1.5rem;
+}
+
+/* NAVIGATION BAR */
 .navBar {
-  border: 3px solid black;
+  display: flex;
+  border-radius: 25px;
+  background-color: #343a40;
+  padding: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.navBar .material-icons {
+  color: #a3cef1;
+  margin-right: 3px;
+}
+
+.navBar p {
+  margin: auto 0;
+  color: lightgrey;
+}
+
+.navLink:hover {
+  color: #e7ecef;
+}
+
+.navLink:link {
+  color: #a3cef1;
+}
+
+.navLink:visited {
+  color: #a3cef1;
+}
+
+.navLink:active {
+  color: white;
+}
+
+/* BUTTONS */
+button {
+  margin: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: white;
+}
+
+button p {
+  padding: 3px;
+  margin: 0;
+}
+
+.submit {
+  background-color: #343a40;
+}
+
+.submit p {
+  color: #e7ecef;
+}
+
+.delete {
+  background-color: #6096ba;
+}
+
+.delete p {
+  color: #e7ecef;
+}
+
+/* FORMS */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form .fields {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea {
+  width: 100%;
 }

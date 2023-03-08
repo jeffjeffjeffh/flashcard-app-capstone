@@ -58,11 +58,10 @@ export default function CreateCard({ setDeckChange }) {
     return <p>Loading...</p>;
   }
 
-  // TODO -
-
   return (
     <div>
       <div className="navBar">
+        <i className="material-icons">home</i>
         <p>
           <Link to="/">Home</Link> /{" "}
           <Link to={`decks/${currentDeck.id}`}>{currentDeck.name}</Link> / Add
@@ -70,31 +69,40 @@ export default function CreateCard({ setDeckChange }) {
         </p>
       </div>
       <h1>{currentDeck.name}</h1>
+      <hr></hr>
       <h2>Add Card</h2>
       <div>
         <form onSubmit={submitHandler}>
-          <label htmlFor="front">
-            Front
-            <textarea
-              id="front"
-              name="front"
-              placeholder="Front side of card"
-              onChange={changeHandler}
-              value={formData.front}
-            ></textarea>
-          </label>
-          <label htmlFor="back">
-            Back
-            <textarea
-              id="back"
-              name="back"
-              placeholder="Back side of card"
-              onChange={changeHandler}
-              value={formData.back}
-            ></textarea>
-          </label>
-          <button onClick={cancelHandler}>Done</button>
-          <button type="submit">Save</button>
+          <div className="fields">
+            <label htmlFor="front">
+              <h5>Front</h5>
+              <textarea
+                id="front"
+                name="front"
+                placeholder="Front side of card"
+                onChange={changeHandler}
+                value={formData.front}
+              ></textarea>
+            </label>
+            <label htmlFor="back">
+              <h5>Back</h5>
+              <textarea
+                id="back"
+                name="back"
+                placeholder="Back side of card"
+                onChange={changeHandler}
+                value={formData.back}
+              ></textarea>
+            </label>
+          </div>
+          <div className="buttons">
+            <button onClick={cancelHandler}>
+              <p>Done</p>
+            </button>
+            <button type="submit">
+              <p>Save</p>
+            </button>
+          </div>
         </form>
       </div>
     </div>

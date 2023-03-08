@@ -32,11 +32,13 @@ export default function StudyCard({ deck: { cards } }) {
 
   return (
     <div>
-      <h1>
+      <h5 style={{ color: "grey" }}>
         Card {currentCardIndex + 1} of {cards.length}
-      </h1>
+      </h5>
       {flipped ? <p>{currentCard.back}</p> : <p>{currentCard.front}</p>}
-      <button onClick={flipHandler}>Flip</button>
+      <button onClick={flipHandler}>
+        <p>Flip</p>
+      </button>
       {flipped ? <button onClick={nextHandler}>Next</button> : null}
     </div>
   );

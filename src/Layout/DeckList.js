@@ -1,6 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import DeckPreview from "./DeckPreview";
+import "./DeckList.css";
 
 export default function DeckList({ decks, setDeckChange }) {
   const history = useHistory();
@@ -20,9 +21,12 @@ export default function DeckList({ decks, setDeckChange }) {
   };
 
   return (
-    <div>
-      <button onClick={HandleAddDeck}>+ Add Deck</button>
-      <ul>{list}</ul>
+    <div className="deckList">
+      <button onClick={HandleAddDeck}>
+        <p>+ Add Deck</p>
+      </button>
+      <hr></hr>
+      <ul className="DeckList">{list}</ul>
     </div>
   );
 }
