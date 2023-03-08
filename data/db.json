@@ -9,33 +9,25 @@
       "name": "React Router",
       "description": "React Router is a collection of navigational components that compose declaratively with your application.",
       "id": 2
-    },
-    {
-      "name": "asdf",
-      "description": "fdsa",
-      "id": 4
-    },
-    {
-      "name": "zfgaeg",
-      "description": "q35tweg",
-      "id": 5
     }
   ],
   "cards": [
     {
+      "id": 1,
       "front": "Differentiate between Real DOM and Virtual DOM.",
-      "back": "Virtual DO updates are faster but do not directly update the HTML",
-      "id": 1
+      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "deckId": 1
     },
     {
+      "id": 2,
       "front": "How do you modify the state of a different React component?",
       "back": "Not at all! State is visible to the component only.",
-      "id": 2
+      "deckId": 1
     },
     {
-      "front": "How do you pass data 'a' to a React child component?",
-      "back": "As properties or props",
       "id": 3,
+      "front": "How do you pass data 'down' to a React child component?",
+      "back": "As properties or props",
       "deckId": 1
     },
     {
@@ -51,28 +43,11 @@
       "id": 5
     },
     {
-      "front": "fdsa",
-      "back": "asdfffff44",
-      "id": 6,
-      "deckId": 1
-    },
-    {
-      "front": "fdsa",
-      "back": "asdf",
+      "cards": [],
+      "front": "b",
+      "back": "b",
       "deckId": 1,
       "id": 7
-    },
-    {
-      "front": "asdf",
-      "back": "fdsa",
-      "deckId": 5,
-      "id": 8
-    },
-    {
-      "front": "asdf",
-      "back": "fdsa",
-      "deckId": 2,
-      "id": 9
     }
   ]
 }
